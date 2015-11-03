@@ -2,6 +2,24 @@ def concatenate_xml(array)
   array.join("")
 end
 
+def is_default_element?(element)
+  element == 1 ? true : false
+end
+
+def is_elements_list_too_long?(elements,array)
+  abort("xml (length: #{array.length}) is too short for so many elements (#{elements.length})") if elements.length > array.length
+end
+
+def add_necessary_xml_elements(array, title, is_title_editable = true, has_summary = true)
+  xml_beginning = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>"
+  is_title_editable ? xml_beginning += "<?Xpress productLine=\"title-" : xml_beginning += "<?Xpress productLine=\"gentitle-"
+  has_summary ? xml_beginning += "summary-article\" ?><topic><prolog />" : xml_beginning += "article\" ?><topic><prolog />"
+  xml_beginning += "<title>#{title}</title><body>"
+  xml_ending = "</body></topic>"
+  array.unshift(xml_beginning)
+  array.push(xml_ending)
+end
+
 def create_elements_list(*args)
   i = 0
   elements_array = Array.new(args.length)
@@ -12,10 +30,35 @@ def create_elements_list(*args)
   elements_array
 end
 
-def insert_xml_element_into_array(array,elements)
-  for i in 0..array.length
-    array[i] = elements[rand(0..elements.length-1)]
+def element_name_to_xml(element_name)
+  case element_name
+  when "paragraph"
+    "<p>Test Paragraph</p>"
+  when "header"
+    "<h1>Test Header</h1>"
+  when "list"
+    "<ul><li>Test Element 1</li><li>Test Element 2</li></ul>"
+  else
+    abort("Not supported xml element")
   end
+end
+
+def insert_xml_element_into_array(array,elements)
+
+  elements.each do |element|
+    begin
+      n = rand(0..array.length-1)
+    end until is_default_element?(array[n])
+    array[n] = element_name_to_xml(element)
+#    p array
+  end
+
+  for i in 0..array.length
+    index = rand(0..elements.length-1)
+    array[i] = element_name_to_xml(elements[index]) if is_default_element?(array[i])
+  end
+
+  add_necessary_xml_elements(array,"Test Title")
   array
 end
 
@@ -34,7 +77,7 @@ case size
     abort("This size is not supported (That's what she said)")
 end
 
-puts lngth
+puts "Your xml will have #{lngth} elements"
 xml = Array.new(lngth,1)
 #concatenate_xml(xml)
 
@@ -43,7 +86,11 @@ end
 #puts create_list("medium")
 #puts create_list("none")
 
-xml = create_list("medium")
-elements_array = create_elements_list("a1","b2","c3","d4","e5")
-puts insert_xml_element_into_array(xml,elements_array).join(" ")
+xml = create_list("small")
+elements_array = create_elements_list("paragraph","header")
+is_elements_list_too_long?(elements_array, xml)
+text=insert_xml_element_into_array(xml,elements_array).join("")
+p text
+
+File.open("test.xml", "w+") { |file| file.write(text)}
 

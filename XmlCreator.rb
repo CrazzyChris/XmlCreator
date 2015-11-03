@@ -1,7 +1,3 @@
-def concatenate_xml(array)
-  array.join("")
-end
-
 def is_default_element?(element)
   element == 1 ? true : false
 end

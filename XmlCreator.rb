@@ -39,8 +39,12 @@ def element_name_to_xml(element_name)
     "<ul><li>Test Element 1</li><li>Test Element 2</li><li>Test Element 3</li></ul>"
   when "ordered list"
     "<ol><li outputclass=\"1.\">Test Element A</li><li outputclass=\"2.\">Test Element B</li><li outputclass=\"3.\">Test Element C</li></ol>"
-  when "simple table"
-    ""
+  when "simple embedded table"
+    tablehead = "<table tabledef=\"cals\"><title>Simple Table</title><tgroup cols=\"3\">"
+    tablecolspec = "<colspec colname=\"1\" colnum=\"1\" colwidth=\"33.33%\"/><colspec colname=\"2\" colnum=\"2\" colwidth=\"33.33%\"/><colspec colname=\"3\" colnum=\"3\" colwidth=\"33.34%\"/><tbody>"
+    tablerow = "<row><entry align=\"left\"><p>aaa1</p></entry><entry align=\"left\"><p>aaa2</p></entry><entry align=\"left\"><p>aaa3</p></entry></row>"
+    tableend = "</tbody></tgroup></table>"
+    tablehead + tablecolspec + tablerow*3 + tableend
   else
     abort("Not supported xml element")
   end
@@ -90,7 +94,7 @@ end
 #puts create_list("none")
 
 xml = create_list("small")
-elements_array = create_elements_list("paragraph","header","ordered list")
+elements_array = create_elements_list("paragraph","simple embedded table")
 is_elements_list_too_long?(elements_array, xml)
 text=insert_xml_element_into_array(xml,elements_array).join("")
 p text

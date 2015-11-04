@@ -45,6 +45,9 @@ def element_name_to_xml(element_name)
     tablerow = "<row><entry align=\"left\"><p>aaa1</p></entry><entry align=\"left\"><p>aaa2</p></entry><entry align=\"left\"><p>aaa3</p></entry></row>"
     tableend = "</tbody></tgroup></table>"
     tablehead + tablecolspec + tablerow*3 + tableend
+  when "picture"
+    picture_dir = Dir.pwd.tr("/","\\")
+    "<image href=\"#{picture_dir}\\test.jpg\" />"
   else
     abort("Not supported xml element")
   end
@@ -94,10 +97,10 @@ end
 #puts create_list("none")
 
 xml = create_list("small")
-elements_array = create_elements_list("paragraph","simple embedded table")
+elements_array = create_elements_list("paragraph","picture")
 is_elements_list_too_long?(elements_array, xml)
 text=insert_xml_element_into_array(xml,elements_array).join("")
 p text
-
+p Dir.pwd.tr("/","\\")
 File.open("test.xml", "w+") { |file| file.write(text)}
 

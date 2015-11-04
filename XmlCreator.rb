@@ -9,8 +9,11 @@ end
 def add_necessary_xml_elements(array, title, is_title_editable = true, has_summary = true)
   xml_beginning = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>"
   is_title_editable ? xml_beginning += "<?Xpress productLine=\"title-" : xml_beginning += "<?Xpress productLine=\"gentitle-"
-  has_summary ? xml_beginning += "summary-article\" ?><topic><prolog />" : xml_beginning += "article\" ?><topic><prolog />"
-  xml_beginning += "<title>#{title}</title><body>"
+  if has_summary
+    xml_beginning += "summary-article\" ?><topic><prolog /><title>#{title}</title><summary /><body>"
+  else
+    xml_beginning += "article\" ?><topic><prolog /><title>#{title}</title><body>"
+  end
   xml_ending = "</body></topic>"
   array.unshift(xml_beginning)
   array.push(xml_ending)

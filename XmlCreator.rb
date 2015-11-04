@@ -14,7 +14,7 @@ def add_necessary_xml_elements(array, title, is_title_editable = true, has_summa
   else
     xml_beginning += "article\" ?><topic><prolog /><title>#{title}</title><body>"
   end
-  xml_ending = "</body></topic>"
+  xml_ending = "</body><attachments /></topic>"
   array.unshift(xml_beginning)
   array.push(xml_ending)
 end
@@ -35,8 +35,12 @@ def element_name_to_xml(element_name)
     "<p>Test Paragraph</p>"
   when "header"
     "<h1>Test Header</h1>"
-  when "list"
-    "<ul><li>Test Element 1</li><li>Test Element 2</li></ul>"
+  when "unordered list"
+    "<ul><li>Test Element 1</li><li>Test Element 2</li><li>Test Element 3</li></ul>"
+  when "ordered list"
+    "<ol><li outputclass=\"1.\">Test Element A</li><li outputclass=\"2.\">Test Element B</li><li outputclass=\"3.\">Test Element C</li></ol>"
+  when "simple table"
+    ""
   else
     abort("Not supported xml element")
   end
@@ -86,7 +90,7 @@ end
 #puts create_list("none")
 
 xml = create_list("small")
-elements_array = create_elements_list("paragraph","header")
+elements_array = create_elements_list("paragraph","header","ordered list")
 is_elements_list_too_long?(elements_array, xml)
 text=insert_xml_element_into_array(xml,elements_array).join("")
 p text

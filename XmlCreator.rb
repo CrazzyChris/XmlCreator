@@ -89,7 +89,6 @@ end
 
 puts "Your xml will have #{lngth} elements"
 xml = Array.new(lngth,1)
-#concatenate_xml(xml)
 
 end
 
@@ -99,8 +98,9 @@ end
 xml = create_list("small")
 elements_array = create_elements_list("paragraph","picture")
 is_elements_list_too_long?(elements_array, xml)
+
 text=insert_xml_element_into_array(xml,elements_array).join("")
 p text
-p Dir.pwd.tr("/","\\")
+
 File.open("test.xml", "w+") { |file| file.write(text)}
 

@@ -92,9 +92,6 @@ xml = Array.new(lngth,1)
 
 end
 
-#puts create_list("medium")
-#puts create_list("none")
-
 xml = create_list("small")
 elements_array = create_elements_list("paragraph","picture")
 is_elements_list_too_long?(elements_array, xml)

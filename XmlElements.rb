@@ -1,0 +1,64 @@
+module XmlElements
+
+def is_default_element?(element)
+  element == 1 ? true : false
+end
+
+def element_name_to_xml(element_name)
+
+  case element_name
+  when "paragraph"
+    "<p>Test Paragraph</p>"
+  when "header"
+    "<h1>Test Header</h1>"
+  when "unordered list"
+    "<ul><li>Test Element 1</li><li>Test Element 2</li><li>Test Element 3</li></ul>"
+  when "ordered list"
+    "<ol><li outputclass=\"1.\">Test Element A</li><li outputclass=\"2.\">Test Element B</li><li outputclass=\"3.\">Test Element C</li></ol>"
+  when "simple embedded table"
+    tablehead = "<table tabledef=\"cals\"><title>Simple Table</title><tgroup cols=\"3\">"
+    tablecolspec = "<colspec colname=\"1\" colnum=\"1\" colwidth=\"33.33%\"/><colspec colname=\"2\" colnum=\"2\" colwidth=\"33.33%\"/><colspec colname=\"3\" colnum=\"3\" colwidth=\"33.34%\"/><tbody>"
+    tablerow = "<row><entry align=\"left\"><p>aaa1</p></entry><entry align=\"left\"><p>aaa2</p></entry><entry align=\"left\"><p>aaa3</p></entry></row>"
+    tableend = "</tbody></tgroup></table>"
+    tablehead + tablecolspec + tablerow*3 + tableend
+  when "picture"
+    picture_dir = Dir.pwd.tr("/","\\")
+    "<image href=\"#{picture_dir}\\test.jpg\" />"
+  else
+    abort("Not supported xml element")
+  end
+end
+
+def insert_xml_element_into_array(array,elements)
+
+  elements.each do |element|
+    begin
+      n = rand(0..array.length-1)
+    end until is_default_element?(array[n])
+    array[n] = element_name_to_xml(element)
+#    p array
+  end
+
+  for i in 0..array.length
+    index = rand(0..elements.length-1)
+    array[i] = element_name_to_xml(elements[index]) if is_default_element?(array[i])
+  end
+
+  add_necessary_xml_elements(array,"Test Title")
+  array
+end
+
+def add_necessary_xml_elements(array, title, is_title_editable = true, has_summary = true)
+  xml_beginning = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>"
+  is_title_editable ? xml_beginning += "<?Xpress productLine=\"title-" : xml_beginning += "<?Xpress productLine=\"gentitle-"
+  if has_summary
+    xml_beginning += "summary-article\" ?><topic><prolog /><title>#{title}</title><summary /><body>"
+  else
+    xml_beginning += "article\" ?><topic><prolog /><title>#{title}</title><body>"
+  end
+  xml_ending = "</body><attachments /></topic>"
+  array.unshift(xml_beginning)
+  array.push(xml_ending)
+end
+
+end

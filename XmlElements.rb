@@ -1,3 +1,6 @@
+require './ElementCreators'
+include ElementCreators
+
 module XmlElements
 
 def is_default_element?(element)
@@ -8,7 +11,7 @@ def element_name_to_xml(element_name)
 
   case element_name
   when "paragraph"
-    "<p>Test Paragraph</p>"
+    create_paragraph(10,false)
   when "header"
     "<h1>Test Header</h1>"
   when "unordered list"

@@ -4,7 +4,6 @@ require './ListOperations'
 include XmlElements
 include ListOperations
 
-
 xml = create_list("small")
 elements_array = create_elements_list("paragraph","picture")
 

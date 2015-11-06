@@ -13,11 +13,11 @@ def element_name_to_xml(element_name)
   when "paragraph"
     create_paragraph(10,false)
   when "header"
-    "<h1>Test Header</h1>"
+    create_header(1)
   when "unordered list"
-    "<ul><li>Test Element 1</li><li>Test Element 2</li><li>Test Element 3</li></ul>"
+    create_list(3,false)
   when "ordered list"
-    "<ol><li outputclass=\"1.\">Test Element A</li><li outputclass=\"2.\">Test Element B</li><li outputclass=\"3.\">Test Element C</li></ol>"
+    create_list(3,true)
   when "simple embedded table"
     tablehead = "<table tabledef=\"cals\"><title>Simple Table</title><tgroup cols=\"3\">"
     tablecolspec = "<colspec colname=\"1\" colnum=\"1\" colwidth=\"33.33%\"/><colspec colname=\"2\" colnum=\"2\" colwidth=\"33.33%\"/><colspec colname=\"3\" colnum=\"3\" colwidth=\"33.34%\"/><tbody>"

@@ -10,7 +10,7 @@ def create_elements_list(*args)
   elements_array
 end
 
-def create_list(size)
+def create_xml_base(size)
 
 case size
   when "small"

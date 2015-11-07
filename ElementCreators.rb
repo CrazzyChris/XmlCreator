@@ -70,11 +70,42 @@ end
 
 end
 
+
+module CreateTable
+
+def create_table(row_count,column_count)
+
+  tablehead = "<table tabledef=\"cals\"><title>Simple Table</title><tgroup cols=\"#{column_count}\">"
+
+  tablecolspec = ""
+  for column in 1..column_count
+    column_width = 100/column_count
+    tablecolspec += "<colspec colname=\"#{column}\" colnum=\"#{column}\" colwidth=\"#{column_width}%\"/>"
+  end
+  tablecolspec +="<tbody>"
+
+tablerows = ""
+  for row in 1..row_count
+    tablerows += "<row>"
+    for column in 1..column_count
+      tablerows += "<entry align=\"left\"><p>Element #{row}#{column}</p></entry>"
+    end
+    tablerows += "</row>"
+  end
+
+  tableend = "</tbody></tgroup></table>"
+  tablehead + tablecolspec + tablerows + tableend
+end
+
+
+end
+
 module ElementCreators
 
 include CreateString
 include CreateList
 include CreateHeader
+include CreateTable
 
 def create_paragraph(string_length,random_length = true)
 random_length ? "<p>#{create_string(rand(1..string_length))}</p>" : "<p>#{create_string(string_length)}</p>"

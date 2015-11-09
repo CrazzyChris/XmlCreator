@@ -39,6 +39,16 @@ end
 
 end
 
+module CreateParagraph
+
+  include CreateString
+
+  def create_paragraph(string_length,random_length = true)
+    random_length ? "<p>#{create_string(rand(1..string_length))}</p>" : "<p>#{create_string(string_length)}</p>"
+  end
+
+end
+
 module CreateList
 
 def create_list(lngth, is_ordered)
@@ -102,13 +112,9 @@ end
 
 module ElementCreators
 
-include CreateString
+include CreateParagraph
 include CreateList
 include CreateHeader
 include CreateTable
-
-def create_paragraph(string_length,random_length = true)
-random_length ? "<p>#{create_string(rand(1..string_length))}</p>" : "<p>#{create_string(string_length)}</p>"
-end
 
 end

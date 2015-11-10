@@ -2,10 +2,9 @@ module ListOperations
 
 def create_elements_list(*args)
   i = 0
-  elements_array = Array.new(args.length)
+  elements_array = Array.new()
   args.each do |argument|
-    elements_array[i] = argument
-    i += 1
+    elements_array.push(argument)
   end
   elements_array
 end

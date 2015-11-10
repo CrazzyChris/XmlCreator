@@ -43,8 +43,8 @@ module CreateParagraph
 
   include CreateString
 
-  def create_paragraph(string_length,random_length = true)
-    random_length ? "<p>#{create_string(rand(1..string_length))}</p>" : "<p>#{create_string(string_length)}</p>"
+  def create_paragraph(max_string_length,random_length = true)
+    random_length ? "<p>#{create_string(rand(1..max_string_length))}</p>" : "<p>#{create_string(max_string_length)}</p>"
   end
 
 end

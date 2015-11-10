@@ -12,8 +12,14 @@ def element_name_to_xml(element_name)
   case element_name
   when "paragraph"
     create_paragraph(10,false)
-  when "header"
+  when "header 1"
     create_header(1)
+  when "header 2"
+    create_header(2)
+  when "header 3"
+    create_header(3)
+  when "header 4"
+    create_header(4)
   when "unordered list"
     create_list(3,false)
   when "ordered list"

@@ -32,8 +32,9 @@ def element_name_to_xml(element_name)
 #    tableend = "</tbody></tgroup></table>"
 #    tablehead + tablecolspec + tablerow*3 + tableend
   when "picture"
-    picture_dir = Dir.pwd.tr("/","\\")
-    "<image href=\"#{picture_dir}\\test.jpg\" />"
+    create_picture("test")
+  when "figure"
+    create_picture("test", true)
   else
     abort("Not supported xml element")
   end

@@ -26,11 +26,6 @@ def element_name_to_xml(element_name)
     create_list(3,true)
   when "simple embedded table"
     create_table(3,3)
-#    tablehead = "<table tabledef=\"cals\"><title>Simple Table</title><tgroup cols=\"3\">"
-#    tablecolspec = "<colspec colname=\"1\" colnum=\"1\" colwidth=\"33.33%\"/><colspec colname=\"2\" colnum=\"2\" colwidth=\"33.33%\"/><colspec colname=\"3\" colnum=\"3\" colwidth=\"33.34%\"/><tbody>"
-#    tablerow = "<row><entry align=\"left\"><p>aaa1</p></entry><entry align=\"left\"><p>aaa2</p></entry><entry align=\"left\"><p>aaa3</p></entry></row>"
-#    tableend = "</tbody></tgroup></table>"
-#    tablehead + tablecolspec + tablerow*3 + tableend
   when "picture"
     create_picture("test")
   when "figure"
@@ -47,7 +42,6 @@ def insert_xml_element_into_array(array,elements)
       n = rand(0..array.length-1)
     end until is_default_element?(array[n])
     array[n] = element_name_to_xml(element)
-#    p array
   end
 
   for i in 0..array.length

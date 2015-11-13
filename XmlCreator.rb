@@ -5,7 +5,7 @@ include XmlElements
 include ListOperations
 
 xml = create_xml_base("small")
-elements_array = create_elements_list("paragraph","figure","picture")
+elements_array = create_elements_list("paragraph_tc","figure","picture")
 
 is_elements_list_too_long?(elements_array, xml)
 

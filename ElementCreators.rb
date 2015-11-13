@@ -1,44 +1,3 @@
-module CreateString
-
-def shorten_string(string, temp_lngth,last=false)
-
-  for i in 1..temp_lngth.to_s.length
-    until string.length == temp_lngth - temp_lngth.to_s.length
-      string.chop!
-    end
-
-    string.chop!
-    string.insert(-1,"*")
-    string.insert(-1,"#{temp_lngth}")
-    last ? temp_lngth : temp_lngth += 1
-
-  end
-
-end
-
-def create_string(lngth, prd=8)
-
-  string="1"
-
-  while string.length <= lngth
-
-    for i in 1..prd
-      string.length == lngth ? break : string.insert(-1,"*")
-    end
-
-    string.insert(-1,"#{string.length}")
-    shorten_string(string,string.length)
-
-  end
-
-  shorten_string(string,lngth,true)
-
-  string
-
-end
-
-end
-
 module TrackChanges
 
   def add_track_changes_to_string(string,type,author)
@@ -58,12 +17,58 @@ module TrackChanges
 
 end
 
+module CreateString
+
+include TrackChanges
+
+def shorten_string(string, temp_lngth,last=false)
+
+  for i in 1..temp_lngth.to_s.length
+    until string.length == temp_lngth - temp_lngth.to_s.length
+      string.chop!
+    end
+
+    string.chop!
+    string.insert(-1,"*")
+    string.insert(-1,"#{temp_lngth}")
+    last ? temp_lngth : temp_lngth += 1
+
+  end
+
+end
+
+def create_string(lngth, prd=8, track_changes=false)
+
+  string="1"
+
+  while string.length <= lngth
+
+    for i in 1..prd
+      string.length == lngth ? break : string.insert(-1,"*")
+    end
+
+    string.insert(-1,"#{string.length}")
+    shorten_string(string,string.length)
+
+  end
+
+  shorten_string(string,lngth,true)
+
+  track_changes ? add_track_changes_to_string(string,"addition") : string
+
+end
+
+end
+
 module CreateParagraph
 
   include CreateString
 
-  def create_paragraph(max_string_length,random_length = true)
-    random_length ? "<p>#{create_string(rand(1..max_string_length))}</p>" : "<p>#{create_string(max_string_length)}</p>"
+  def create_paragraph(max_string_length,random_length = true,track_changes=false)
+    string = random_length ? "#{create_string(rand(1..max_string_length))}" : "#{create_string(max_string_length)}"
+    final_string = track_changes ? add_track_changes_to_string(string,"insertion","KTest1") : string
+    final_string.insert(0,"<p>")
+    final_string.insert(-1,"</p>")
   end
 
 end

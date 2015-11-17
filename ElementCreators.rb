@@ -81,7 +81,7 @@ module CreateList
 
 include CreateString
 
-def create_list(lngth,is_ordered,max_element_length=10,random_element_length = true)
+def create_list(lngth,is_ordered,:max_element_length=>10,random_element_length = true)
 
   if is_ordered
     list = "<ol>"

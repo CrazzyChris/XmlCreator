@@ -13,7 +13,7 @@ def element_name_to_xml(element_name)
   when "paragraph"
     create_paragraph(10,false)
   when "paragraph_tc"
-    create_paragraph(10,random_length = false,track_changes = true)
+    create_paragraph_with_tc(10,false)
   when "header 1"
     create_header(1)
   when "header 2"

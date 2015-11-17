@@ -64,8 +64,8 @@ module CreateParagraph
 
   include CreateString
 
-  def create_paragraph(max_string_length,random_length = true,track_changes=false)
-    random_length ? "#<p>{create_string(rand(1..max_string_length))}" : "#{create_string(max_string_length)}</p>"
+  def create_paragraph(max_string_length,random_length = true)
+    random_length ? "<p>#{create_string(rand(1..max_string_length))}" : "#{create_string(max_string_length)}</p>"
   end
 
   def create_paragraph_with_tc(max_string_length,random_length = true)
@@ -79,18 +79,22 @@ end
 
 module CreateList
 
-def create_list(lngth, is_ordered)
+include CreateString
+
+def create_list(lngth,is_ordered,max_element_length=10,random_element_length = true)
 
   if is_ordered
     list = "<ol>"
     for i in 1..lngth
-      list += "<li outputclass=\"#{i}\">Test Element #{i}</li>"
+      list_element = random_element_length ? "#{create_string(rand(1..max_element_length))}" : "#{create_string(max_element_length)}"
+      list += "<li outputclass=\"#{i}\">#{list_element}</li>"
     end
     list += "</ol>"
   else
     list = "<ul>"
     for i in 1..lngth
-      list += "<li>Test Element #{i}</li>"
+      list_element = random_element_length ? "#{create_string(rand(1..max_element_length))}" : "#{create_string(max_element_length)}"
+      list += "<li>#{list_element}</li>"
     end
     list += "</ul>"
   end

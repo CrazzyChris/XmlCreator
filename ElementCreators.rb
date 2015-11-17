@@ -65,6 +65,10 @@ module CreateParagraph
   include CreateString
 
   def create_paragraph(max_string_length,random_length = true,track_changes=false)
+    random_length ? "#<p>{create_string(rand(1..max_string_length))}" : "#{create_string(max_string_length)}</p>"
+  end
+
+  def create_paragraph_with_tc(max_string_length,random_length = true)
     string = random_length ? "#{create_string(rand(1..max_string_length))}" : "#{create_string(max_string_length)}"
     final_string = track_changes ? add_track_changes_to_string(string,"insertion","KTest1") : string
     final_string.insert(0,"<p>")

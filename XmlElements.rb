@@ -23,9 +23,9 @@ def element_name_to_xml(element_name)
   when "header 4"
     create_header(4)
   when "unordered list"
-    create_list(3,false)
+    create_unordered_list(3)
   when "ordered list"
-    create_list(3,true)
+    create_ordered_list(3)
   when "simple embedded table"
     create_table(3,3)
   when "picture"

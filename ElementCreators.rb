@@ -11,7 +11,7 @@ module TrackChanges
       string.insert(track_changes_end,"<xt:delText xmlns:xt=\"urn:xpressauthor:trackchanges\" xt:action=\"end\"/>")
       string.insert(track_changes_start, "<xt:delText xmlns:xt=\"urn:xpressauthor:trackchanges\" xt:action=\"start\" xt:author=\"Test1\"/>")
     else
-      abort("Such track changes type is not supported!")
+      abort("Such track changes type (#{type}) is not supported!")
     end
   end
 
@@ -37,7 +37,7 @@ def shorten_string(string, temp_lngth,last=false)
 
 end
 
-def create_string(lngth, prd=8, track_changes=false,track_changes_type="addition")
+def create_string(lngth, prd=8, track_changes=false,track_changes_type="insertion")
 
   string="1"
 
@@ -68,7 +68,7 @@ module CreateParagraph
     random_length ? "<p>#{create_string(rand(1..max_string_length))}</p>" : "<p>#{create_string(max_string_length)}</p>"
   end
 
-  def create_paragraph_with_tc(max_string_length,random_length = false,track_changes_type="addition",author="Ktest1")
+  def create_paragraph_with_tc(max_string_length,random_length = false,track_changes_type="insertion",author="Ktest1")
     string = random_length ? "#{create_string(rand(1..max_string_length))}" : "#{create_string(max_string_length)}"
     final_string = add_track_changes_to_string(string,track_changes_type,author)
     final_string.insert(0,"<p>")
@@ -81,23 +81,25 @@ module CreateList
 
 include CreateString
 
-def create_list(lngth,is_ordered,max_element_length=10,random_element_length=false)
+def create_ordered_list(lngth,max_element_length=10,random_element_length=false)
 
-  if is_ordered
     list = "<ol>"
     for i in 1..lngth
       list_element = random_element_length ? "#{create_string(rand(1..max_element_length))}" : "#{create_string(max_element_length)}"
       list += "<li outputclass=\"#{i}\">#{list_element}</li>"
     end
     list += "</ol>"
-  else
-    list = "<ul>"
+
+end
+
+def create_unordered_list(lngth,max_element_length=10,random_element_length=false)
+
+  list = "<ul>"
     for i in 1..lngth
       list_element = random_element_length ? "#{create_string(rand(1..max_element_length))}" : "#{create_string(max_element_length)}"
       list += "<li>#{list_element}</li>"
     end
-    list += "</ul>"
-  end
+  list += "</ul>"
 
 end
 

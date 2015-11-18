@@ -64,13 +64,13 @@ module CreateParagraph
 
   include CreateString
 
-  def create_paragraph(max_string_length,random_length = true)
-    random_length ? "<p>#{create_string(rand(1..max_string_length))}" : "#{create_string(max_string_length)}</p>"
+  def create_paragraph(max_string_length,random_length = false)
+    random_length ? "<p>#{create_string(rand(1..max_string_length))}</p>" : "<p>#{create_string(max_string_length)}</p>"
   end
 
-  def create_paragraph_with_tc(max_string_length,random_length = true)
+  def create_paragraph_with_tc(max_string_length,random_length = false)
     string = random_length ? "#{create_string(rand(1..max_string_length))}" : "#{create_string(max_string_length)}"
-    final_string = track_changes ? add_track_changes_to_string(string,"insertion","KTest1") : string
+    final_string = add_track_changes_to_string(string,"insertion","KTest1")
     final_string.insert(0,"<p>")
     final_string.insert(-1,"</p>")
   end
@@ -81,7 +81,7 @@ module CreateList
 
 include CreateString
 
-def create_list(lngth,is_ordered,:max_element_length=>10,random_element_length = true)
+def create_list(lngth,is_ordered,max_element_length=10,random_element_length=false)
 
   if is_ordered
     list = "<ol>"
@@ -114,7 +114,9 @@ end
 
 module CreateTable
 
-def create_table(row_count,column_count)
+include CreateParagraph
+
+def create_table(row_count,column_count,max_element_length=10,random_element_length=false)
 
   tablehead = "<table tabledef=\"cals\"><title>Simple Table</title><tgroup cols=\"#{column_count}\">"
 
@@ -129,7 +131,8 @@ tablerows = ""
   for row in 1..row_count
     tablerows += "<row>"
     for column in 1..column_count
-      tablerows += "<entry align=\"left\"><p>Element #{row}#{column}</p></entry>"
+      cell_element = create_paragraph(max_element_length,random_element_length)
+      tablerows += "<entry align=\"left\">#{cell_element}</entry>"
     end
     tablerows += "</row>"
   end

@@ -37,7 +37,7 @@ def shorten_string(string, temp_lngth,last=false)
 
 end
 
-def create_string(lngth, prd=8, track_changes=false)
+def create_string(lngth, prd=8, track_changes=false,track_changes_type="addition")
 
   string="1"
 
@@ -54,7 +54,7 @@ def create_string(lngth, prd=8, track_changes=false)
 
   shorten_string(string,lngth,true)
 
-  track_changes ? add_track_changes_to_string(string,"addition") : string
+  track_changes ? add_track_changes_to_string(string,track_changes_type) : string
 
 end
 
@@ -68,7 +68,7 @@ module CreateParagraph
     random_length ? "<p>#{create_string(rand(1..max_string_length))}</p>" : "<p>#{create_string(max_string_length)}</p>"
   end
 
-  def create_paragraph_with_tc(max_string_length,random_length = false)
+  def create_paragraph_with_tc(max_string_length,random_length = false,track_changes_type)
     string = random_length ? "#{create_string(rand(1..max_string_length))}" : "#{create_string(max_string_length)}"
     final_string = add_track_changes_to_string(string,"insertion","KTest1")
     final_string.insert(0,"<p>")
@@ -98,7 +98,6 @@ def create_list(lngth,is_ordered,max_element_length=10,random_element_length=fal
     end
     list += "</ul>"
   end
-
 
 end
 

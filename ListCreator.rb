@@ -2,6 +2,8 @@ require './FillWithContent'
 
 class CreateListTest
 
+include FillElementWithContent
+
 def initialize(type,length)
 
   case type

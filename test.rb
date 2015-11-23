@@ -16,10 +16,10 @@ p test
 #p test_with_track_changes
 
 list = CreateListTest.new("ordered",3)
-list.fill_with_content
+list.fill_with_random_content
 p list.return_list
 list2 = CreateListTest.new("unordered",3)
-list2.fill_with_random_content
+list2.fill_with_random_content_with_tc("insertion","Ktest1")
 p list2.return_list
 
 def proc_return

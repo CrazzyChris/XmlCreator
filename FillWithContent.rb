@@ -21,24 +21,25 @@ module FillElementWithContent
 
   include CreateString
 
-    $fill = lambda do |string_length,random,tc|
-      string = random ? create_string(rand(5..string_length)) : create_string(string_length)
-      tc ? add_track_changes_to_string(string,'insertion','Ktest1') : string
+    $fill = lambda do |string_length,random,tc,tc_type,tc_author|
+      random ? string=create_string(rand(5..string_length)) : string=create_string(string_length)
+      tc ? add_track_changes_to_string(string,tc_type,tc_author) : string
     end
 
   def self.random_content(content,string_length)
-    #fill = lambda{|match| create_string(rand(5..string_length))}
-    content.gsub!("placeholder", $fill.call(string_length,true,false))#{|placeholder| create_string(rand(5..string_length))}
+    content.gsub!("placeholder") {|match| $fill.call(string_length,true,false,"","")}#{|placeholder| create_string(rand(5..string_length))}
   end
 
   def self.fixed_content(content,string_length)
-    content.gsub!("placeholder",$fill.call(string_length,false,false))
+    content.gsub!("placeholder") {|match| $fill.call(string_length,false,false,"","")}
   end
 
-  def self.random_content_with_track_changes(content,string_length,type = "insertion",author="Ktest1")
-    content.gsub!("placeholder",$fill.call(string_length,true,true))
+  def self.random_content_with_track_changes(content,string_length,tc_type = "insertion",tc_author="Ktest1")
+    content.gsub!("placeholder") {|match| $fill.call(string_length,true,true,tc_type,tc_author)}
   end
 
-  def self.fixed_content_with_track_changes(content,string_length,type = "insertion",author="Ktest1")
-    content.gsub!("placeholder",$fill.call(string_length,false,true))
+  def self.fixed_content_with_track_changes(content,string_length,tc_type = "insertion",tc_author="Ktest1")
+    content.gsub!("placeholder") {|match| $fill.call(string_length,false,true,tc_type,tc_author)}
+  end
+
 end

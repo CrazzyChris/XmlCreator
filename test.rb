@@ -19,7 +19,7 @@ list = CreateListTest.new("ordered",3)
 list.fill_with_random_content
 p list.return_list
 list2 = CreateListTest.new("unordered",3)
-list2.fill_with_random_content_with_tc("insertion","Ktest1")
+list2.fill_with_random_content_with_tc("Ktest1")
 p list2.return_list
 
 def proc_return

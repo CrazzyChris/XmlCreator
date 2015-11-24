@@ -25,7 +25,6 @@ module FillElementWithContent
       random ? string=create_string(rand(5..string_length)) : string=create_string(string_length)
       tc_type = ["insertion","deletion"]
       tc ? add_track_changes_to_string(string,tc_type.sample,tc_author) : string
-      #add randomizing tc_type
     end
 
   def self.random_content(content,string_length)

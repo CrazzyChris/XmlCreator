@@ -38,11 +38,11 @@ def fill_with_random_content
 end
 
 def fill_with_content_with_tc(tc_type,tc_author)
-  FillElementWithContent::fixed_content_with_track_changes(@list,10,tc_type,tc_author)
+  FillElementWithContent::fixed_content_with_track_changes(@list,10,tc_author)
 end
 
 def fill_with_random_content_with_tc(tc_type,tc_author)
-  FillElementWithContent::random_content_with_track_changes(@list,10,tc_type,tc_author)
+  FillElementWithContent::random_content_with_track_changes(@list,10,tc_author)
 end
 
 end

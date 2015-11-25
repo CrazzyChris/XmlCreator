@@ -60,24 +60,8 @@ end
 
 end
 
-module CreatePicture
-
-  def create_picture(picture_name, is_figure = false)
-    picture_dir = Dir.pwd.tr("/","\\")
-    if is_figure
-      description = "Test Description"
-      "<fig><image href=\"#{picture_dir}\\#{picture_name}.jpg\" /><desc>#{description}</desc></fig>"
-    else
-      "<image href=\"#{picture_dir}\\#{picture_name}.jpg\" />"
-    end
-  end
-
-end
-
 module ElementCreators
 
 include CreateString
-
-include CreatePicture
 
 end

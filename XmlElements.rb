@@ -5,6 +5,7 @@ require './ParagraphCreator'
 require './HeaderCreator'
 require './ListCreator'
 require './TableCreator'
+require './PictureBuilder'
 
 module XmlElements
 
@@ -50,9 +51,12 @@ def element_name_to_xml(element_name)
     table.fill_with_content
     table.return_table
   when "picture"
-    create_picture("test")
+    picture = BuildPictureTest.new("test")
+    picture.return_picture
   when "figure"
-    create_picture("test", true)
+    figure = BuildPictureTest.new("test",true)
+    figure.fill_description_with_content
+    figure.return_figure
   else
     abort("Not supported xml element")
   end

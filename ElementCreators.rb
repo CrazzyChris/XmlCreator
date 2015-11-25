@@ -60,23 +60,6 @@ end
 
 end
 
-module CreateParagraph
-
-  include CreateString
-
-  def create_paragraph(max_string_length,random_length = false)
-    random_length ? "<p>#{create_string(rand(1..max_string_length))}</p>" : "<p>#{create_string(max_string_length)}</p>"
-  end
-
-  def create_paragraph_with_tc(max_string_length,random_length = false,track_changes_type="insertion",author="Ktest1")
-    string = random_length ? "#{create_string(rand(1..max_string_length))}" : "#{create_string(max_string_length)}"
-    final_string = add_track_changes_to_string(string,track_changes_type,author)
-    final_string.insert(0,"<p>")
-    final_string.insert(-1,"</p>")
-  end
-
-end
-
 module CreateList
 
 include CreateString
@@ -118,7 +101,7 @@ end
 
 module CreateTable
 
-include CreateParagraph
+#include CreateParagraph
 
 def create_table(row_count,column_count,max_element_length=10,random_element_length=false)
 
@@ -163,7 +146,7 @@ end
 
 module ElementCreators
 
-include CreateParagraph
+#include CreateParagraph
 include CreateList
 include CreateHeader
 include CreateTable

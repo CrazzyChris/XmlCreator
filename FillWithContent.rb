@@ -19,7 +19,7 @@ end
 
 module FillElementWithContent
 
-  include CreateString
+  #include CreateString
 
     $fill = lambda do |string_length,random,tc,tc_author|
       random ? string=create_string(rand(5..string_length)) : string=create_string(string_length)

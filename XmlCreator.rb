@@ -5,7 +5,7 @@ include XmlElements
 include ListOperations
 
 xml = create_xml_base("small")
-elements_array = create_elements_list("paragraph","header 1","header 3")
+elements_array = create_elements_list("paragraph","header 1","unordered list","ordered list")
 
 is_elements_list_too_long?(elements_array, xml)
 

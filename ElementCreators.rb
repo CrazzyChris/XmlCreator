@@ -60,34 +60,6 @@ end
 
 end
 
-module CreateList
-
-include CreateString
-
-def create_ordered_list(lngth,max_element_length=10,random_element_length=false)
-
-    list = "<ol>"
-    for i in 1..lngth
-      list_element = random_element_length ? "#{create_string(rand(1..max_element_length))}" : "#{create_string(max_element_length)}"
-      list += "<li outputclass=\"#{i}\">#{list_element}</li>"
-    end
-    list += "</ol>"
-
-end
-
-def create_unordered_list(lngth,max_element_length=10,random_element_length=false)
-
-  list = "<ul>"
-    for i in 1..lngth
-      list_element = random_element_length ? "#{create_string(rand(1..max_element_length))}" : "#{create_string(max_element_length)}"
-      list += "<li>#{list_element}</li>"
-    end
-  list += "</ul>"
-
-end
-
-end
-
 module CreateTable
 
 #include CreateParagraph
@@ -135,9 +107,8 @@ end
 
 module ElementCreators
 
-#include CreateParagraph
-include CreateList
-#include CreateHeader
+include CreateString
+
 include CreateTable
 include CreatePicture
 

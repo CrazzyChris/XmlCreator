@@ -3,6 +3,7 @@ include ElementCreators
 
 require './ParagraphCreator'
 require './HeaderCreator'
+require './ListCreator'
 
 module XmlElements
 
@@ -33,13 +34,16 @@ def element_name_to_xml(element_name)
     header.return_header
   when "header 4"
     header = CreateHeaderTest.new(4)
-        header.fill_with_content
+    header.fill_with_content
     header.return_header
-
   when "unordered list"
-    create_unordered_list(3)
+    list = CreateListTest.new("unordered",3)
+    list.fill_with_content
+    list.return_list
   when "ordered list"
-    create_ordered_list(3)
+    list = CreateListTest.new("ordered",3)
+    list.fill_with_content
+    list.return_list
   when "simple embedded table"
     create_table(3,3)
   when "picture"

@@ -2,6 +2,8 @@ require './ElementCreators'
 require './ListOperations'
 require './ListCreator'
 require './ParagraphCreator'
+require './HeaderCreator'
+require './TableCreator'
 require './FillWithContent'
 
 include CreateString
@@ -16,22 +18,9 @@ p test
 
 #p test_with_track_changes
 
-list = CreateListTest.new("ordered",3)
-list.fill_with_random_content
-p list.return_list
-paragraph = CreateParagraphTest.new()
-paragraph.fill_with_random_content_with_tc("Ktest1")
-p paragraph.return_paragraph
-
-def proc_return
-  Proc.new { return "Proc.new"}.call
-  return "proc_return method finished"
-end
-
-def lambda_return
-  lambda { return "lambda" }.call
-  #return "lambda_return method finished"
-end
-
-puts proc_return
-puts lambda_return
+table = CreateTableTest.new(3,3)
+table.fill_with_random_content
+p table.return_table
+header = CreateHeaderTest.new(2)
+header.fill_with_random_content_with_tc("Ktest1")
+p header.return_header

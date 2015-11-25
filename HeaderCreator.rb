@@ -5,7 +5,7 @@ class CreateHeaderTest
   include FillElementWithContent
 
   def initialize(header_level)
-    "<h#{header_level}>placeholder</h#{header_level}>"
+    @header = "<h#{header_level}>placeholder</h#{header_level}>"
   end
 
   def return_header

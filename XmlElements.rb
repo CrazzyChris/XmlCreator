@@ -4,6 +4,7 @@ include ElementCreators
 require './ParagraphCreator'
 require './HeaderCreator'
 require './ListCreator'
+require './TableCreator'
 
 module XmlElements
 
@@ -45,7 +46,9 @@ def element_name_to_xml(element_name)
     list.fill_with_content
     list.return_list
   when "simple embedded table"
-    create_table(3,3)
+    table = CreateTableTest.new(3,3,"Test Title")
+    table.fill_with_content
+    table.return_table
   when "picture"
     create_picture("test")
   when "figure"

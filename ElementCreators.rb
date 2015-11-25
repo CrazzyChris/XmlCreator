@@ -60,37 +60,6 @@ end
 
 end
 
-module CreateTable
-
-#include CreateParagraph
-
-def create_table(row_count,column_count,max_element_length=10,random_element_length=false)
-
-  tablehead = "<table tabledef=\"cals\"><title>Simple Table</title><tgroup cols=\"#{column_count}\">"
-
-  tablecolspec = ""
-  for column in 1..column_count
-    column_width = 100/column_count
-    tablecolspec += "<colspec colname=\"#{column}\" colnum=\"#{column}\" colwidth=\"#{column_width}%\"/>"
-  end
-  tablecolspec +="<tbody>"
-
-tablerows = ""
-  for row in 1..row_count
-    tablerows += "<row>"
-    for column in 1..column_count
-      cell_element = create_paragraph(max_element_length,random_element_length)
-      tablerows += "<entry align=\"left\">#{cell_element}</entry>"
-    end
-    tablerows += "</row>"
-  end
-
-  tableend = "</tbody></tgroup></table>"
-  tablehead + tablecolspec + tablerows + tableend
-end
-
-end
-
 module CreatePicture
 
   def create_picture(picture_name, is_figure = false)
@@ -109,7 +78,6 @@ module ElementCreators
 
 include CreateString
 
-include CreateTable
 include CreatePicture
 
 end

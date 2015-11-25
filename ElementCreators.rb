@@ -88,17 +88,6 @@ end
 
 end
 
-module CreateHeader
-
-include CreateString
-
-def create_header(header_level,max_header_length=10,random_header_length=false)
-  header_content = random_header_length ? "#{create_string(rand(1..max_header_length))}" : "#{create_string(max_header_length)}"
-  "<h#{header_level}>#{header_content}</h#{header_level}>"
-end
-
-end
-
 module CreateTable
 
 #include CreateParagraph
@@ -148,7 +137,7 @@ module ElementCreators
 
 #include CreateParagraph
 include CreateList
-include CreateHeader
+#include CreateHeader
 include CreateTable
 include CreatePicture
 

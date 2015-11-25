@@ -2,6 +2,7 @@ require './ElementCreators'
 include ElementCreators
 
 require './ParagraphCreator'
+require './HeaderCreator'
 
 module XmlElements
 
@@ -19,13 +20,22 @@ def element_name_to_xml(element_name)
   when "paragraph_tc"
     create_paragraph_with_tc(10,false)
   when "header 1"
-    create_header(1)
+    header = CreateHeaderTest.new(1)
+    header.fill_with_content
+    header.return_header
   when "header 2"
-    create_header(2)
+    header = CreateHeaderTest.new(2)
+    header.fill_with_content
+    header.return_header
   when "header 3"
-    create_header(3)
+    header = CreateHeaderTest.new(3)
+    header.fill_with_content
+    header.return_header
   when "header 4"
-    create_header(4)
+    header = CreateHeaderTest.new(4)
+        header.fill_with_content
+    header.return_header
+
   when "unordered list"
     create_unordered_list(3)
   when "ordered list"

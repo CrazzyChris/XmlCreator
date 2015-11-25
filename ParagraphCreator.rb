@@ -22,11 +22,11 @@ class CreateParagraphTest
     FillElementWithContent::random_content(@paragraph,10)
   end
 
-  def fill_with_content_with_tc(tc_author)
+  def fill_with_content_with_tc(tc_author="Ktest1")
     FillElementWithContent::fixed_content_with_track_changes(@paragraph,10,tc_author)
   end
 
-  def fill_with_random_content_with_tc(tc_author)
+  def fill_with_random_content_with_tc(tc_author="Ktest1")
     FillElementWithContent::random_content_with_track_changes(@paragraph,10,tc_author)
   end
 

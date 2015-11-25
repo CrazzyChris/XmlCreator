@@ -4,8 +4,8 @@ require './ListOperations'
 include XmlElements
 include ListOperations
 
-xml = create_xml_base("medium")
-elements_array = create_elements_list("paragraph","header 1","unordered list","simple embedded table","picture","figure")
+xml = create_xml_base("small")
+elements_array = create_elements_list("paragraph_tc")
 
 is_elements_list_too_long?(elements_array, xml)
 

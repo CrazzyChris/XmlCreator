@@ -21,7 +21,9 @@ def element_name_to_xml(element_name)
     paragraph.fill_with_content
     paragraph.return_paragraph
   when "paragraph_tc"
-    create_paragraph_with_tc(10,false)
+    paragraph = CreateParagraphTest.new()
+    paragraph.fill_with_content_with_tc
+    paragraph.return_paragraph
   when "header 1"
     header = CreateHeaderTest.new(1)
     header.fill_with_content

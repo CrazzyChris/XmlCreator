@@ -1,6 +1,6 @@
 module ListOperations
 
-def create_elements_list(*args)
+def create_elements_list(*args) #move to ElementCrators?
   i = 0
   elements_array = Array.new()
   args.each do |argument|
@@ -9,7 +9,7 @@ def create_elements_list(*args)
   elements_array
 end
 
-def create_xml_base(size)
+def create_xml_base(size) #move to XMLCreator?
 
 case size
   when "small"

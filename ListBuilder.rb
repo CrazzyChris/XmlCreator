@@ -1,6 +1,6 @@
 require './FillWithContent'
 
-class CreateListTest
+class ListBuilder
 
   include FillElementWithContent
 

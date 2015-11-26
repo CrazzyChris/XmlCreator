@@ -1,6 +1,6 @@
 require './FillWithContent'
 
-class CreateHeaderTest
+class HeaderBuilder
 
   include FillElementWithContent
 

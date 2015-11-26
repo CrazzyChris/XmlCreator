@@ -1,10 +1,10 @@
 require './ElementCreators'
 include ElementCreators
 
-require './ParagraphCreator'
-require './HeaderCreator'
-require './ListCreator'
-require './TableCreator'
+require './ParagraphBuilder'
+require './HeaderBuilder'
+require './ListBuilder'
+require './TableBuilder'
 require './PictureBuilder'
 
 module XmlElements
@@ -17,46 +17,46 @@ def element_name_to_xml(element_name)
 
   case element_name
   when "paragraph"
-    paragraph = CreateParagraphTest.new()
+    paragraph = ParagraphBuilder.new()
     paragraph.fill_with_content
     paragraph.return_paragraph
   when "paragraph_tc"
-    paragraph = CreateParagraphTest.new()
+    paragraph = ParagraphBuilder.new()
     paragraph.fill_with_content_with_tc
     paragraph.return_paragraph
   when "header 1"
-    header = CreateHeaderTest.new(1)
+    header = HeaderBuilder.new(1)
     header.fill_with_content
     header.return_header
   when "header 2"
-    header = CreateHeaderTest.new(2)
+    header = HeaderBuilder.new(2)
     header.fill_with_content
     header.return_header
   when "header 3"
-    header = CreateHeaderTest.new(3)
+    header = HeaderBuilder.new(3)
     header.fill_with_content
     header.return_header
   when "header 4"
-    header = CreateHeaderTest.new(4)
+    header = HeaderBuilder.new(4)
     header.fill_with_content
     header.return_header
   when "unordered list"
-    list = CreateListTest.new("unordered",3)
+    list = ListBuilder.new("unordered",3)
     list.fill_with_content
     list.return_list
   when "ordered list"
-    list = CreateListTest.new("ordered",3)
+    list = ListBuilder.new("ordered",3)
     list.fill_with_content
     list.return_list
   when "simple embedded table"
-    table = CreateTableTest.new(3,3,"Test Title")
+    table = TableBuilder.new(3,3,"Test Title")
     table.fill_with_content
     table.return_table
   when "picture"
-    picture = BuildPictureTest.new("test")
+    picture = PictureBuilder.new("test")
     picture.return_picture
   when "figure"
-    figure = BuildPictureTest.new("test",true)
+    figure = PictureBuilder.new("test",true)
     figure.fill_description_with_content
     figure.return_figure
   else

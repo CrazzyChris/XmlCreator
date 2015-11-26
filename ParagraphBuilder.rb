@@ -1,6 +1,6 @@
 require './FillWithContent'
 
-class CreateParagraphTest
+class ParagraphBuilder
 
   include FillElementWithContent
 

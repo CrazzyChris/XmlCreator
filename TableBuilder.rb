@@ -1,6 +1,6 @@
 require './FillWithContent'
 
-class CreateTableTest
+class TableBuilder
 
   include FillElementWithContent
 

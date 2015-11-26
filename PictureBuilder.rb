@@ -1,4 +1,4 @@
-class BuildPictureTest
+class PictureBuilder
 
   def initialize(picture_name,is_figure = false)
     picture_dir = Dir.pwd.tr("/","\\")

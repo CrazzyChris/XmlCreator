@@ -4,7 +4,7 @@ class TableBuilder
 
   include FillElementWithContent
 
-  def initialize(row_count,column_count,table_title="Simple Table")
+  def initialize(row_count,column_count,table_title="Simple Table", cell_content_length = 10)
 
     tablehead = "<table tabledef=\"cals\"><title>#{table_title}</title><tgroup cols=\"#{column_count}\">"
 
@@ -26,6 +26,7 @@ class TableBuilder
 
     tableend = "</tbody></tgroup></table>"
     @table = tablehead + tablecolspec + tablerows + tableend
+    @cell_content_length = cell_content_length
   end
 
   def return_table
@@ -33,19 +34,19 @@ class TableBuilder
   end
 
   def fill_with_content
-    FillElementWithContent::fixed_content(@table,10)
+    FillElementWithContent::fixed_content(@table,@cell_content_length)
   end
 
   def fill_with_random_content
-    FillElementWithContent::random_content(@table,10)
+    FillElementWithContent::random_content(@table,@cell_content_length)
   end
 
   def fill_with_content_with_tc(tc_author)
-    FillElementWithContent::fixed_content_with_track_changes(@table,10,tc_author)
+    FillElementWithContent::fixed_content_with_track_changes(@table,@cell_content_length,tc_author)
   end
 
   def fill_with_random_content_with_tc(tc_author)
-    FillElementWithContent::random_content_with_track_changes(@table,10,tc_author)
+    FillElementWithContent::random_content_with_track_changes(@table,@cell_content_length,tc_author)
   end
 
 end

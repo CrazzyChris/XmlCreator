@@ -1,10 +1,12 @@
 module ListOperations
 
 def create_elements_list(*args) #move to ElementCrators?
-  i = 0
   elements_array = Array.new()
   args.each do |argument|
-    elements_array.push(argument)
+    p argument
+    element = /(\w+[ \d]*)/.match(argument)[1]
+    p element
+    elements_array.push(element)
   end
   elements_array
 end

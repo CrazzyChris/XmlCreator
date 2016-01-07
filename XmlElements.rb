@@ -13,8 +13,9 @@ def is_default_element?(element)
   element == 1 ? true : false
 end
 
-def element_name_to_xml(element_name)
-
+def element_name_to_xml(element)
+  element_name = /(\w+[ \d]*)/.match(element)[1]
+  element_length = /\((\d+)\)/.match(element)[1]
   case element_name
   when "paragraph"
     paragraph = ParagraphBuilder.new()
